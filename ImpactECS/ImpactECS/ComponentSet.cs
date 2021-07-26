@@ -17,6 +17,35 @@ namespace ImpactECS {
             _supportedComponentTypes = supportedComponentTypes;
         }
 
+        public void ForEach<T1>(Action<Entity, T1> callback) 
+            where T1 : class, IComponent 
+        {
+
+            for (int i = _registered.Count - 1; i >= 0; i--) {
+
+                var set = _registered[i];
+                var components = set.Components;
+                
+                callback.Invoke(set.Entity, components[0] as T1);
+            }
+            
+        }
+        
+        public void ForEach<T1, T2>(Action<Entity, T1, T2> callback) 
+            where T1 : class, IComponent 
+            where T2 : class, IComponent 
+        {
+
+            for (int i = _registered.Count - 1; i >= 0; i--) {
+
+                var set = _registered[i];
+                var components = set.Components;
+                
+                callback.Invoke(set.Entity, components[0] as T1, components[1] as T2);
+            }
+            
+        }
+
         public bool Matches(Entity entity) {
 
             for (int i = 0; i < _supportedComponentTypes.Length; i++) {

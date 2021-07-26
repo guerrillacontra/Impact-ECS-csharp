@@ -67,5 +67,31 @@ namespace UnitTests {
             
             Assert.AreEqual(set.Items.Count(), 0);
         }
+
+        [Test]
+        public void TestForEach() {
+            
+            const int id = 1;
+            
+            var entity = new Entity(id);
+
+            var testCom = new TestComponent() {Text = "Hello world"};
+            entity.AddComponent(testCom);
+
+            var test2Com = new TestComponent2();
+            entity.AddComponent(test2Com);
+            
+            var set = new ComponentSet(new[] {typeof(TestComponent), typeof(TestComponent2)});
+            set.Register(entity);
+
+            set.ForEach<TestComponent, TestComponent2>((e, test1, test2) => {
+                
+                Assert.AreEqual(e, entity);
+                Assert.AreEqual(test1, testCom);
+                Assert.AreEqual(test2, test2Com);
+            });
+
+
+        }
     }
 }

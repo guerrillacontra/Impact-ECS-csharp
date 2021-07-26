@@ -47,6 +47,7 @@
         <Compile Include="ComponentSetTest.cs" />
         <Compile Include="EntityTest.cs" />
         <Compile Include="Mocks\TestComponent.cs" />
+        <Compile Include="Mocks\TestComponent2.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
     </ItemGroup>
     <ItemGroup>
