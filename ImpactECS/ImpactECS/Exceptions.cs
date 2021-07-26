@@ -15,7 +15,7 @@ namespace ImpactECS {
             
         }
 
-        public class ComponentNotFoundException : Exception {
+        public sealed class ComponentNotFoundException : Exception {
             public ComponentNotFoundException(Entity entity, Type type)
             :base($"Could not find component of type {type.FullName} in entity {entity.Id}")
             {

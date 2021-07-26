@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using ImpactECS;
 using NUnit.Framework;
+using NUnit.Framework.Internal;
 using UnitTests.Mocks;
 
 namespace UnitTests {
@@ -53,5 +54,6 @@ namespace UnitTests {
 
             Assert.AreEqual(entity.Components.Count(), 0);
         }
+
     }
 }

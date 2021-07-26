@@ -44,6 +44,7 @@
         <Reference Include="System.Xml" />
     </ItemGroup>
     <ItemGroup>
+        <Compile Include="ComponentSetTest.cs" />
         <Compile Include="EntityTest.cs" />
         <Compile Include="Mocks\TestComponent.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />

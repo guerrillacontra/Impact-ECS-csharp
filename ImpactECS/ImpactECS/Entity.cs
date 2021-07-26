@@ -19,6 +19,11 @@ namespace ImpactECS {
         public Entity(int id = 0) {
             _id = id;
         }
+
+
+        public bool HasComponent(Type componentType) {
+            return _lookup.ContainsKey(componentType);
+        }
         
         public bool HasComponent<T>() where T : IComponent {
             return _lookup.ContainsKey(typeof(T));
@@ -37,6 +42,14 @@ namespace ImpactECS {
             _components.Add(component);
             
             ComponentAdded.Invoke(this, component);
+        }
+
+        public IComponent GetComponent(Type componentType) {
+            if (!_lookup.TryGetValue(componentType, out var component)) {
+                throw new Exceptions.ComponentNotFoundException(this, componentType);
+            }
+
+            return component;
         }
 
         public T GetComponent<T>() where T : IComponent {
