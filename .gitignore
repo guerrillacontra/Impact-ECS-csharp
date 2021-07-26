@@ -5,3 +5,5 @@ ImpactECS/packages/**
 ImpactECS/UnitTests/bin/**
 ImpactECS/UnitTests/obj/**
 ImpactECS/ImpactECS.sln.DotSettings.user
+ImpactECS/UnitTests/bin/Debug/ImpactECS.dll
+ImpactECS/UnitTests/bin/Debug/ImpactECS.pdb
