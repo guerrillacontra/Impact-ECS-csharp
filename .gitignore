@@ -48,3 +48,6 @@ ImpactECS/UnitTests/obj/Debug/UnitTests.csprojAssemblyReference.cache
 ImpactECS/UnitTests/obj/Debug/UnitTests.dll
 ImpactECS/UnitTests/obj/Debug/UnitTests.pdb
 ImpactECS/ImpactECS.sln.DotSettings.user
+ImpactECS/ImpactECS.sln.DotSettings.user
+ImpactECS/UnitTests/bin/Debug/ImpactECS.dll
+ImpactECS/UnitTests/bin/Debug/ImpactECS.pdb

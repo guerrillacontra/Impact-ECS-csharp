@@ -1,4 +1,5 @@
-﻿using ImpactECS;
+﻿using System.Linq;
+using ImpactECS;
 using NUnit.Framework;
 using UnitTests.Mocks;
 
@@ -38,7 +39,7 @@ namespace UnitTests {
 
             Assert.IsTrue(entity.HasComponent<TestComponent>());
 
-            Assert.AreEqual(entity.Components.Count, 1);
+            Assert.AreEqual(entity.Components.Count(), 1);
 
             var com = entity.GetComponent<TestComponent>();
 
@@ -50,7 +51,7 @@ namespace UnitTests {
 
             Assert.IsFalse(entity.HasComponent<TestComponent>());
 
-            Assert.AreEqual(entity.Components.Count, 0);
+            Assert.AreEqual(entity.Components.Count(), 0);
         }
     }
 }

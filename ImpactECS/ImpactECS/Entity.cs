@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 
 namespace ImpactECS {
 
@@ -11,9 +10,9 @@ namespace ImpactECS {
         public event EntityComponentHandler ComponentAdded = delegate { };
         public event EntityComponentHandler ComponentRemoved = delegate { };
 
-        public int Id => _id; 
+        public int Id => _id;
 
-        public ReadOnlyCollection<IComponent> Components => _components.AsReadOnly();
+        public IEnumerable<IComponent> Components => _components;
         
         private readonly int _id;
 
