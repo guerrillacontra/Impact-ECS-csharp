@@ -84,7 +84,7 @@ namespace UnitTests {
             var set = new ComponentSet<TestComponent>();
             set.Register(entity);
 
-            set.ForEach<TestComponent>((e, test1) => {
+            set.ForEach((e, test1) => {
                 
                 Assert.AreEqual(e, entity);
                 Assert.AreEqual(test1, testCom);

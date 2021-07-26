@@ -42,6 +42,7 @@
         <Compile Include="Exceptions.cs" />
         <Compile Include="IComponent.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
+        <Compile Include="Sets\BaseComponentSet.cs" />
         <Compile Include="Sets\ComponentSet.cs" />
         <Compile Include="Sets\IComponentSet.cs" />
         <Compile Include="Sets\SetItem.cs" />

@@ -11,6 +11,7 @@ namespace ImpactECS.Sets {
 
         IEnumerable<SetItem> RegisteredItems { get; }
 
+
         void Register(Entity entity);
         void Unregister(Entity entity);
         bool Matches(Entity entity);

@@ -3,79 +3,44 @@ using System;
 using System.Collections.Generic;
 
 namespace ImpactECS.Sets {
-    public sealed  class ComponentSet<T1> : IComponentSet where T1:IComponent {
+    public sealed  class ComponentSet<T1> : BaseComponentSet where T1:IComponent {
 
-        public event ComponentSetHandler Registered = delegate { };
-        public event ComponentSetHandler Unregistered = delegate { };
-        
-
-        public IEnumerable<SetItem> RegisteredItems => _registered;
-        
-
-        public bool Matches(Entity entity) {
-
-            return entity.HasComponent<T1>();
-
+        public ComponentSet() :
+            base(new[] {typeof(T1)}) {
         }
 
-        public void Register(Entity entity) {
-
-            if (_entityLookup.ContainsKey(entity)) return;
-
-            IComponent[] components = {
-                entity.GetComponent<T1>()
-            };
-
-            var item = new SetItem(entity, components);
-            
-            _registered.Add(item);
-            _entityLookup.Add(entity, item);
-            
-            _tsItems.Add(new TypesafeItem(entity.GetComponent<T1>()));
-            
-            Registered.Invoke(this, ref item);
-        }
-
-
-        public void Unregister(Entity entity) {
-
-            if (!_entityLookup.TryGetValue(entity, out var item)) {
-                return;
-            }
-
-            var index = _registered.IndexOf(item);
-
-            _registered.RemoveAt(index);
-            _entityLookup.Remove(entity);
-            _tsItems.RemoveAt(index);
-
-            Unregistered.Invoke(this, ref item);
-        }
-
-
-        public void ForEach<T>(Action<Entity, T1> callback) where T:IComponent {
+        public void ForEach(Action<Entity, T1> callback) {
 
             for (int i = _tsItems.Count - 1; i >= 0; i--) {
 
-                var item = _registered[i];
-                var coms = _tsItems[i];
+                var item = _tsItems[i];
 
-                callback.Invoke(item.Entity, coms.Com1);
+                callback.Invoke(item.Item.Entity, item.Com1);
             }
-            
         }
 
-        private readonly struct TypesafeItem {
+        private readonly struct TypesafeItemWrapper {
+            public readonly SetItem Item;
             public readonly T1 Com1;
 
-            public TypesafeItem( T1 com1) {
+            public TypesafeItemWrapper( SetItem item, T1 com1) {
+                Item = item;
                 Com1 = com1;
             }
         }
-        
          
-        private readonly List<SetItem> _registered = new List<SetItem>();
-        private readonly List<TypesafeItem> _tsItems = new List<TypesafeItem>();
-        private readonly Dictionary<Entity, SetItem> _entityLookup = new Dictionary<Entity, SetItem>();
+        private readonly List<TypesafeItemWrapper> _tsItems = new List<TypesafeItemWrapper>();
+
+        protected override void OnItemRegistered(SetItem item) {
+            _tsItems.Add(new TypesafeItemWrapper(item, item.Entity.GetComponent<T1>()));
+        }
+
+        protected override void OnItemUnregistered(int index, SetItem value) {
+           _tsItems.RemoveAt(index);
+        }
+
+        public override bool Matches(Entity entity) {
+            return entity.HasComponent<T1>();
+        }
     }
 }
