@@ -15,6 +15,16 @@ namespace ImpactECS.Sets {
             _supportedTypes = supportedTypes;
         }
         
+        public bool Matches(Entity entity) {
+            
+            for (var i = 0; i < _supportedTypes.Length; i++) {
+                var type = _supportedTypes[i];
+                if (!entity.HasComponent(type)) return false;
+            }
+
+            return true;
+        }
+        
         
         public void Register(Entity entity) {
             if (_entityLookup.ContainsKey(entity)) return;
@@ -55,7 +65,7 @@ namespace ImpactECS.Sets {
 
         protected abstract void OnItemUnregistered(int index, SetItem value);
 
-        public abstract bool Matches(Entity entity);
+  
         
         
         private readonly Type[] _supportedTypes;

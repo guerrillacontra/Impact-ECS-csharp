@@ -89,8 +89,30 @@ namespace UnitTests {
                 Assert.AreEqual(e, entity);
                 Assert.AreEqual(test1, testCom);
             });
+        }
+        
+        [Test]
+        public void TestForEach2Param() {
+            
+            const int id = 1;
+            
+            var entity = new Entity(id);
 
+            var com1 = new TestComponent() {Text = "Hello world"};
+            entity.AddComponent(com1);
+            
+            var com2 = new TestComponent2() {Text = "Bye world"};
+            entity.AddComponent(com2);
 
+            var set = new ComponentSet<TestComponent, TestComponent2>();
+            set.Register(entity);
+
+            set.ForEach((e, test1, test2) => {
+                
+                Assert.AreEqual(e, entity);
+                Assert.AreEqual(test1, com1);
+                Assert.AreEqual(test2, com2);
+            });
         }
     }
 }
