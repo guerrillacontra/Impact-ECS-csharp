@@ -48,6 +48,10 @@
         <Compile Include="EntityTest.cs" />
         <Compile Include="Mocks\TestComponent.cs" />
         <Compile Include="Mocks\TestComponent2.cs" />
+        <Compile Include="Mocks\TestComponent3.cs" />
+        <Compile Include="Mocks\TestComponent4.cs" />
+        <Compile Include="Mocks\TestComponent5.cs" />
+        <Compile Include="Mocks\TestComponent6.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
     </ItemGroup>
     <ItemGroup>
