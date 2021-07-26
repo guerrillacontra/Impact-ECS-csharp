@@ -1,7 +1,7 @@
-ImpactECS/.idea/*
-ImpactECS/ImpactECS/obj/*
-ImpactECS/ImpactECS/bin/*
-ImpactECS/packages/*
-ImpactECS/UnitTests/bin/*
-ImpactECS/UnitTests/obj/*
+ImpactECS/.idea/**
+ImpactECS/ImpactECS/obj/**
+ImpactECS/ImpactECS/bin/**
+ImpactECS/packages/**
+ImpactECS/UnitTests/bin/**
+ImpactECS/UnitTests/obj/**
 ImpactECS/ImpactECS.sln.DotSettings.user
