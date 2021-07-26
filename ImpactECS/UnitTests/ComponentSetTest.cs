@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using ImpactECS;
+using ImpactECS.Sets;
 using NUnit.Framework;
 using UnitTests.Mocks;
 
@@ -12,13 +13,13 @@ namespace UnitTests {
 
             var entity = new Entity(id);
 
-            var set = new ComponentSet(new[] {typeof(TestComponent)});
+            var set = new ComponentSet<TestComponent>();
 
             Assert.IsNotNull(set);
 
             Assert.IsFalse(set.Matches(entity));
             
-            Assert.AreEqual(set.Items.Count(), 0);
+            Assert.AreEqual(set.RegisteredItems.Count(), 0);
 
             var testCom = new TestComponent() {Text = "Hello world"};
             entity.AddComponent(testCom);
@@ -38,15 +39,14 @@ namespace UnitTests {
             const int eventIdRemoved = 2;
 
 
-            ComponentSet.SetItem setItem = default(ComponentSet.SetItem);
-            
-            set.Registered += delegate(ComponentSet componentSet, ref ComponentSet.SetItem item) {
+            var setItem = default(SetItem);
+
+            set.Registered += (IComponentSet componentSet, ref SetItem item) => {
                 eventId++;
                 setItem = item;
             };
 
-
-            set.Unregistered += delegate(ComponentSet componentSet, ref ComponentSet.SetItem item) {
+            set.Unregistered += (IComponentSet componentSet, ref SetItem item) => {
                 eventId++;
                 setItem = item;
             };
@@ -57,7 +57,7 @@ namespace UnitTests {
 
             Assert.AreEqual(setItem.Entity, entity);
             
-            Assert.AreEqual(set.Items.Count(), 1);
+            Assert.AreEqual(set.RegisteredItems.Count(), 1);
 
             Assert.AreEqual(setItem.Components[0], testCom);
 
@@ -65,11 +65,11 @@ namespace UnitTests {
 
             Assert.AreEqual(eventId, eventIdRemoved);
             
-            Assert.AreEqual(set.Items.Count(), 0);
+            Assert.AreEqual(set.RegisteredItems.Count(), 0);
         }
 
         [Test]
-        public void TestForEach() {
+        public void TestForEach1Param() {
             
             const int id = 1;
             
@@ -81,14 +81,13 @@ namespace UnitTests {
             var test2Com = new TestComponent2();
             entity.AddComponent(test2Com);
             
-            var set = new ComponentSet(new[] {typeof(TestComponent), typeof(TestComponent2)});
+            var set = new ComponentSet<TestComponent>();
             set.Register(entity);
 
-            set.ForEach<TestComponent, TestComponent2>((e, test1, test2) => {
+            set.ForEach<TestComponent>((e, test1) => {
                 
                 Assert.AreEqual(e, entity);
                 Assert.AreEqual(test1, testCom);
-                Assert.AreEqual(test2, test2Com);
             });
 
 
