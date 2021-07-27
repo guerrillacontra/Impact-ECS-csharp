@@ -15,13 +15,11 @@ namespace UnitTests {
             var entity = new Entity();
             entity.AddComponent(new TestComponent());
             entity.AddComponent(new TestComponent2());
-
     
             var container = new EntityContainer();
             container.AddEntity(entity);
             
             Assert.IsTrue(container.Contains(entity));
-         
 
             var sets = new IComponentSet[] {
                 new ComponentSet<TestComponent>(),
@@ -48,11 +46,34 @@ namespace UnitTests {
                 Assert.IsTrue(set.RegisteredItems.ToArray()[0].Entity == entity);
                 
                 container.UnRegisterSet(set);
-                
             }
-            
-            
+        }
+        
+        [Test]
+        public void TestEntityAddAndRemove() {
 
+            var entity = new Entity();
+            entity.AddComponent(new TestComponent());
+            entity.AddComponent(new TestComponent2());
+
+            var container = new EntityContainer();
+            container.AddEntity(entity);
+            
+            Assert.IsTrue(container.Contains(entity));
+
+            var set = new ComponentSet<TestComponent, TestComponent2>();
+            
+            Assert.IsEmpty(set.RegisteredItems);
+            
+            container.RegisterSet(set);
+            
+            Assert.IsNotEmpty(set.RegisteredItems);
+            
+            Assert.IsTrue(set.HasEntity(entity));
+            
+            entity.RemoveComponent<TestComponent>();
+            
+            Assert.IsEmpty(set.RegisteredItems);
         }
         
     }
