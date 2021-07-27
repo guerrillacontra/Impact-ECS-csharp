@@ -39,6 +39,7 @@
     </ItemGroup>
     <ItemGroup>
         <Compile Include="Entity.cs" />
+        <Compile Include="EntityContainer.cs" />
         <Compile Include="Exceptions.cs" />
         <Compile Include="IComponent.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />

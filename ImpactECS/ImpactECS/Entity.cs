@@ -10,6 +10,7 @@ namespace ImpactECS {
         public event EntityComponentHandler ComponentAdded = delegate { };
         public event EntityComponentHandler ComponentRemoved = delegate { };
 
+
         public int Id => _id;
 
         public IEnumerable<IComponent> Components => _components;
@@ -36,8 +37,7 @@ namespace ImpactECS {
             if (_lookup.ContainsKey(type)) {
                 throw new Exceptions.ComponentExistsException(this, component);
             }
-            
-            
+
             _lookup.Add(type, component);
             _components.Add(component);
             
@@ -70,7 +70,6 @@ namespace ImpactECS {
             if (!_lookup.TryGetValue(type, out var component)) {
                 throw new Exceptions.ComponentNotFoundException(this, type);
             }
-
 
             _lookup.Remove(type);
             _components.Remove(component);

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace ImpactECS.Sets {
 
@@ -15,6 +16,8 @@ namespace ImpactECS.Sets {
         void Register(Entity entity);
         void Unregister(Entity entity);
         bool Matches(Entity entity);
-        
+
+        bool HasEntity(Entity entity);
+
     }
 }

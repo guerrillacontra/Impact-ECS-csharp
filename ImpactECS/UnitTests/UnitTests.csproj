@@ -45,6 +45,7 @@
     </ItemGroup>
     <ItemGroup>
         <Compile Include="ComponentSetTest.cs" />
+        <Compile Include="EntityContainerTest.cs" />
         <Compile Include="EntityTest.cs" />
         <Compile Include="Mocks\TestComponent.cs" />
         <Compile Include="Mocks\TestComponent2.cs" />

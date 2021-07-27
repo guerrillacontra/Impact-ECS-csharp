@@ -24,7 +24,10 @@ namespace ImpactECS.Sets {
 
             return true;
         }
-        
+
+        public bool HasEntity(Entity entity) {
+            return _entityLookup.ContainsKey(entity);
+        }
         
         public void Register(Entity entity) {
             if (_entityLookup.ContainsKey(entity)) return;
