@@ -122,7 +122,7 @@ namespace UnitTests {
             
             var entity = new Entity(id);
 
-            var components = new IComponent[] {new TestComponent(), new TestComponent2(), new TestComponent3()};
+            var components = new object[] {new TestComponent(), new TestComponent2(), new TestComponent3()};
 
             foreach (var com in components) {
                 entity.AddComponent(com);
@@ -135,7 +135,7 @@ namespace UnitTests {
 
                 Assert.AreEqual(e, entity);
                 
-                var tests = new IComponent[] {test1, test2, test3};
+                var tests = new object[] {test1, test2, test3};
 
                 for (int i = 0; i < tests.Length; i++) {
                     Assert.AreEqual(tests[i], components[i]);
@@ -150,7 +150,7 @@ namespace UnitTests {
             
             var entity = new Entity(id);
 
-            var components = new IComponent[] {new TestComponent(), new TestComponent2(), new TestComponent3(), new TestComponent4()};
+            var components = new object[] {new TestComponent(), new TestComponent2(), new TestComponent3(), new TestComponent4()};
 
             foreach (var com in components) {
                 entity.AddComponent(com);
@@ -163,7 +163,7 @@ namespace UnitTests {
 
                 Assert.AreEqual(e, entity);
                 
-                var tests = new IComponent[] {test1, test2, test3, test4};
+                var tests = new object[] {test1, test2, test3, test4};
 
                 for (int i = 0; i < tests.Length; i++) {
                     Assert.AreEqual(tests[i], components[i]);
@@ -178,7 +178,7 @@ namespace UnitTests {
             
             var entity = new Entity(id);
 
-            var components = new IComponent[] {new TestComponent(), new TestComponent2(), new TestComponent3(), new TestComponent4(), new TestComponent5()};
+            var components = new object[] {new TestComponent(), new TestComponent2(), new TestComponent3(), new TestComponent4(), new TestComponent5()};
 
             foreach (var com in components) {
                 entity.AddComponent(com);
@@ -191,7 +191,7 @@ namespace UnitTests {
 
                 Assert.AreEqual(e, entity);
                 
-                var tests = new IComponent[] {test1, test2, test3, test4, test5};
+                var tests = new object[] {test1, test2, test3, test4, test5};
 
                 for (int i = 0; i < tests.Length; i++) {
                     Assert.AreEqual(tests[i], components[i]);
@@ -206,7 +206,7 @@ namespace UnitTests {
             
             var entity = new Entity(id);
 
-            var components = new IComponent[] {new TestComponent(), new TestComponent2(), new TestComponent3(), new TestComponent4(), new TestComponent5(), new TestComponent6()};
+            var components = new object[] {new TestComponent(), new TestComponent2(), new TestComponent3(), new TestComponent4(), new TestComponent5(), new TestComponent6()};
 
             foreach (var com in components) {
                 entity.AddComponent(com);
@@ -219,7 +219,7 @@ namespace UnitTests {
 
                 Assert.AreEqual(e, entity);
                 
-                var tests = new IComponent[] {test1, test2, test3, test4, test5, test6};
+                var tests = new object[] {test1, test2, test3, test4, test5, test6};
 
                 for (int i = 0; i < tests.Length; i++) {
                     Assert.AreEqual(tests[i], components[i]);

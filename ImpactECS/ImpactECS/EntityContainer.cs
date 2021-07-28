@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using ImpactECS.Sets;
 
 namespace ImpactECS {
@@ -65,7 +64,7 @@ namespace ImpactECS {
         }
 
 
-        private void EntityStateChangedHandler(Entity entity, IComponent component) {
+        private void EntityStateChangedHandler(Entity entity, object component) {
           
             foreach (var set in _sets) {
             

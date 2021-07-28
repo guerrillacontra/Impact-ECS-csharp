@@ -2,9 +2,9 @@
     public readonly struct SetItem {
             
         public readonly Entity Entity;
-        public readonly IComponent[] Components;
+        public readonly object[] Components;
 
-        public SetItem(Entity entity, IComponent[] components) {
+        public SetItem(Entity entity, object[] components) {
             Entity = entity;
             Components = components;
         }

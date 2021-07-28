@@ -32,7 +32,7 @@ namespace ImpactECS.Sets {
         public void Register(Entity entity) {
             if (_entityLookup.ContainsKey(entity)) return;
 
-            IComponent[] components = new IComponent[_supportedTypes.Length];
+            object[] components = new object[_supportedTypes.Length];
 
             for (int i = 0; i < components.Length; i++) {
                 components[i] = entity.GetComponent(_supportedTypes[i]);

@@ -5,7 +5,7 @@ namespace ImpactECS {
 
     public sealed class Entity {
 
-        public delegate void EntityComponentHandler(Entity entity, IComponent component);
+        public delegate void EntityComponentHandler(Entity entity, object component);
 
         public event EntityComponentHandler ComponentAdded = delegate { };
         public event EntityComponentHandler ComponentRemoved = delegate { };
@@ -13,7 +13,7 @@ namespace ImpactECS {
 
         public int Id => _id;
 
-        public IEnumerable<IComponent> Components => _components;
+        public IEnumerable<object> Components => _components;
         
         private readonly int _id;
 
@@ -26,11 +26,11 @@ namespace ImpactECS {
             return _lookup.ContainsKey(componentType);
         }
         
-        public bool HasComponent<T>() where T : IComponent {
+        public bool HasComponent<T>() {
             return _lookup.ContainsKey(typeof(T));
         }
         
-        public void AddComponent(IComponent component) {
+        public void AddComponent(object component) {
 
             var type = component.GetType();
 
@@ -44,7 +44,7 @@ namespace ImpactECS {
             ComponentAdded.Invoke(this, component);
         }
 
-        public IComponent GetComponent(Type componentType) {
+        public object GetComponent(Type componentType) {
             if (!_lookup.TryGetValue(componentType, out var component)) {
                 throw new Exceptions.ComponentNotFoundException(this, componentType);
             }
@@ -52,7 +52,7 @@ namespace ImpactECS {
             return component;
         }
 
-        public T GetComponent<T>() where T : IComponent {
+        public T GetComponent<T>() {
 
             var type = typeof(T);
 
@@ -77,7 +77,7 @@ namespace ImpactECS {
             ComponentRemoved.Invoke(this, component);
         }
 
-        private readonly Dictionary<Type, IComponent> _lookup = new Dictionary<Type, IComponent>();
-        private readonly List<IComponent> _components = new List<IComponent>();
+        private readonly Dictionary<Type, object> _lookup = new Dictionary<Type, object>();
+        private readonly List<object> _components = new List<object>();
     }
 }

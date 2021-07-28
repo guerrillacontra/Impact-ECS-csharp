@@ -1,5 +1,4 @@
 ﻿using System;
-using ImpactECS.Sets;
 
 namespace ImpactECS {
     public static class Exceptions {
@@ -8,7 +7,7 @@ namespace ImpactECS {
         public sealed class ComponentExistsException : Exception {
 
 
-            public ComponentExistsException(Entity entity, IComponent component) 
+            public ComponentExistsException(Entity entity, object component) 
                 : base($"Component {component.GetType().FullName} all ready exists in entity {entity.Id}")
             {
                 

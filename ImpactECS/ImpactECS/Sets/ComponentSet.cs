@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 
 namespace ImpactECS.Sets {
-    public sealed class ComponentSet<T1> : BaseComponentSet where T1 : IComponent {
+    public sealed class ComponentSet<T1> : BaseComponentSet {
         public ComponentSet() :
             base(new[] {typeof(T1)}) {
         }
@@ -39,8 +39,7 @@ namespace ImpactECS.Sets {
     }
 
     public sealed class ComponentSet<T1, T2> : BaseComponentSet
-        where T1 : IComponent
-        where T2 : IComponent {
+    {
         public ComponentSet() :
             base(new[] {typeof(T1), typeof(T2)}) {
         }
@@ -78,9 +77,6 @@ namespace ImpactECS.Sets {
     }
     
     public sealed class ComponentSet<T1, T2, T3> : BaseComponentSet
-        where T1 : IComponent
-        where T2 : IComponent 
-        where T3 : IComponent 
     {
         public ComponentSet() :
             base(new[] {typeof(T1), typeof(T2), typeof(T3)}) {
@@ -127,10 +123,6 @@ namespace ImpactECS.Sets {
     }
     
     public sealed class ComponentSet<T1, T2, T3, T4> : BaseComponentSet
-        where T1 : IComponent
-        where T2 : IComponent 
-        where T3 : IComponent 
-        where T4 : IComponent 
     {
         public ComponentSet() :
             base(new[] {typeof(T1), typeof(T2), typeof(T3), typeof(T4)}) {
@@ -183,11 +175,6 @@ namespace ImpactECS.Sets {
     }
     
     public sealed class ComponentSet<T1, T2, T3, T4, T5> : BaseComponentSet
-        where T1 : IComponent
-        where T2 : IComponent 
-        where T3 : IComponent 
-        where T4 : IComponent 
-        where T5 : IComponent 
     {
         public ComponentSet() :
             base(new[] {typeof(T1), typeof(T2), typeof(T3), typeof(T4), typeof(T5)}) {
@@ -242,12 +229,6 @@ namespace ImpactECS.Sets {
     }
     
     public sealed class ComponentSet<T1, T2, T3, T4, T5, T6> : BaseComponentSet
-        where T1 : IComponent
-        where T2 : IComponent 
-        where T3 : IComponent 
-        where T4 : IComponent 
-        where T5 : IComponent 
-        where T6 : IComponent 
     {
         public ComponentSet() :
             base(new[] {typeof(T1), typeof(T2), typeof(T3), typeof(T4), typeof(T5), typeof(T6)}) {

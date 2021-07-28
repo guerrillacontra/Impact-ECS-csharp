@@ -1,7 +1,6 @@
-﻿using ImpactECS;
-
+﻿
 namespace UnitTests.Mocks {
-    public class TestComponent : IComponent {
+    public class TestComponent {
         public string Text;
         public int Number;
         public bool Flag;
