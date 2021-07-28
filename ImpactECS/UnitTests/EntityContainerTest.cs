@@ -46,7 +46,21 @@ namespace UnitTests {
                 Assert.IsTrue(set.RegisteredItems.ToArray()[0].Entity == entity);
                 
                 container.UnRegisterSet(set);
+                
+                Assert.IsEmpty(set.RegisteredItems);
+                
+                container.RegisterSet(set);
+                
+                Assert.IsTrue(registered);
             }
+            
+            container.RemoveEntity(entity);
+                
+            Assert.IsFalse(container.Contains(entity));
+                
+            Assert.IsEmpty(sets[0].RegisteredItems);
+            Assert.IsEmpty(sets[1].RegisteredItems);
+            
         }
         
         [Test]
